@@ -2,6 +2,8 @@ import { Box, Button, Divider, Typography, useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
 const EditPostWidget = ({ postId, description, picturePath, onClose }) => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ const EditPostWidget = ({ postId, description, picturePath, onClose }) => {
     const formData = new FormData();
     formData.append("description", editedDescription); // Use the editedDescription state
 
-    const response = await fetch(`http://localhost:3001/posts/${postId}`, {
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, {
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -57,7 +59,7 @@ const EditPostWidget = ({ postId, description, picturePath, onClose }) => {
               height="auto"
               alt="post"
               style={{ borderRadius: "4px", marginTop: "8px" }}
-              src={`http://localhost:3001/assets/${picturePath}`}
+              src={`${BASE_URL}/assets/${picturePath}`}
             />
           </Box>
         )}
