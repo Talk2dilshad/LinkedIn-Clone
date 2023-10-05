@@ -65,3 +65,11 @@ mongoose
     // Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`));
+
+// default route
+app.get("/",(req,res) => {
+  return res.json({
+      success:true,
+      message:`Server is running at Port ${PORT}`
+  })
+});
